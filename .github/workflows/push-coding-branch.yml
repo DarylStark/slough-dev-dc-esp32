@@ -1,0 +1,11 @@
+---
+on:
+  push:
+    branches-ignore:
+      - main
+      - dev
+
+jobs:
+  ci:
+    name: CI
+    uses: DarylStark/slough-gha-wf-container-projects/.github/workflows/ci-container.yml@main

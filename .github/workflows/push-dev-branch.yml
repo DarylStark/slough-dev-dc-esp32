@@ -1,0 +1,20 @@
+---
+on:
+  push:
+    branches:
+      - dev
+
+jobs:
+  ci:
+    name: CI
+    uses: DarylStark/slough-gha-wf-container-projects/.github/workflows/ci-container.yml@main
+  cd:
+    name: CD
+    uses: DarylStark/slough-gha-wf-container-projects/.github/workflows/cd-container.yml@main
+    needs: ci
+    with:
+      container-tags: dast1986/slough-dev-dc-esp32:latest-dev
+      platforms: linux/arm64,linux/amd64
+    secrets:
+      DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+      DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
