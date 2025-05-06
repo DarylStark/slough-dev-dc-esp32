@@ -7,6 +7,7 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 USER root
 
 # Install required packages
+# hadolint ignore=DL3008
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
     git \
@@ -32,11 +33,11 @@ USER developer
 
 # Install ESP32 IDF
 WORKDIR /home/developer
-RUN mkdir esp && \
-    cd esp && \
-    git clone --recursive https://github.com/espressif/esp-idf.git --depth 1 --recurse-submodules --shallow-submodules && \
-    cd esp-idf && \
-    ./install.sh all
+RUN mkdir esp
+WORKDIR /home/developer/esp
+RUN git clone --recursive https://github.com/espressif/esp-idf.git --depth 1 --recurse-submodules --shallow-submodules
+WORKDIR /home/developer/esp/esp-idf
+RUN ./install.sh all
 COPY bashrc.local .bashrc.local
 
 # Configure Starship
