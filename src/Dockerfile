@@ -38,6 +38,9 @@ WORKDIR /home/developer/esp
 RUN git clone --recursive https://github.com/espressif/esp-idf.git --depth 1 --recurse-submodules --shallow-submodules
 WORKDIR /home/developer/esp/esp-idf
 RUN ./install.sh all
+
+# Copy the ESP32 IDF activation
+WORKDIR /home/developer
 COPY bashrc.local .bashrc.local
 
 # Configure Starship
