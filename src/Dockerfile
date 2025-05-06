@@ -3,6 +3,42 @@ FROM dast1986/slough-dev-dc-cpp:latest AS base
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
+# Switch to root user
+USER root
+
+# Install required packages
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+    git \
+    wget \
+    flex \
+    bison \
+    gperf \
+    python3 \
+    python3-pip \
+    python3-venv \
+    cmake \
+    ninja-build \
+    ccache \
+    libffi-dev \
+    libssl-dev \
+    dfu-util \
+    libusb-1.0-0 && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+# Switch back to developer user
+USER developer
+
+# Install ESP32 IDF
+WORKDIR /home/developer
+RUN mkdir esp && \
+    cd esp && \
+    git clone --recursive https://github.com/espressif/esp-idf.git --depth 1 --recurse-submodules --shallow-submodules && \
+    cd esp-idf && \
+    ./install.sh all
+COPY bashrc.local .bashrc.local
+
 # Configure Starship
 ENV PROMPTNAME="ESP32"
 
