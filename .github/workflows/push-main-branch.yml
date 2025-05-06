@@ -14,8 +14,9 @@ jobs:
     uses: DarylStark/slough-gha-wf-container-projects/.github/workflows/cd.yml@main
     needs: ci
     with:
-      container-tags: dast1986/slough-dev-dc-esp32:latest
-      platforms: linux/arm64,linux/amd64
+      container-repository: dast1986
+      container-name: slough-dev-dc-esp32
+      platforms: linux/amd64
     secrets:
       DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
       DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
