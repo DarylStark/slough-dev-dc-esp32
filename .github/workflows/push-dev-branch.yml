@@ -7,10 +7,10 @@ on:
 jobs:
   ci:
     name: CI
-    uses: DarylStark/slough-gha-wf-container-projects/.github/workflows/ci-container.yml@main
+    uses: DarylStark/slough-gha-wf-container-projects/.github/workflows/ci.yml@main
   cd:
     name: CD
-    uses: DarylStark/slough-gha-wf-container-projects/.github/workflows/cd-container.yml@main
+    uses: DarylStark/slough-gha-wf-container-projects/.github/workflows/cd.yml@main
     needs: ci
     with:
       container-tags: dast1986/slough-dev-dc-esp32:latest-dev
