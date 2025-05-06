@@ -8,6 +8,7 @@ jobs:
   ci:
     name: CI
     uses: DarylStark/slough-gha-wf-container-projects/.github/workflows/ci.yml@main
+  # This job handles production deployment using the cd.yml workflow.
   cd:
     name: CD
     uses: DarylStark/slough-gha-wf-container-projects/.github/workflows/cd.yml@main
