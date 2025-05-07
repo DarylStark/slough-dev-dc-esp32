@@ -24,7 +24,9 @@ RUN apt-get update && \
     libffi-dev \
     libssl-dev \
     dfu-util \
-    libusb-1.0-0 && \
+    libusb-1.0-0 \
+    screen \
+    psmisc && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
@@ -35,7 +37,7 @@ USER developer
 WORKDIR /home/developer
 RUN mkdir esp
 WORKDIR /home/developer/esp
-RUN git clone --recursive https://github.com/espressif/esp-idf.git --depth 1 --recurse-submodules --shallow-submodules
+RUN git clone --branch v5.4.1 --recursive https://github.com/espressif/esp-idf.git --depth 1 --recurse-submodules --shallow-submodules
 WORKDIR /home/developer/esp/esp-idf
 RUN ./install.sh all
 
