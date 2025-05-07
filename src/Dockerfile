@@ -24,8 +24,8 @@ RUN apt-get update && \
     libffi-dev \
     libssl-dev \
     dfu-util \
-    libusb-1.0-0 && \
-    screen && \
+    libusb-1.0-0 \
+    screen \
     psmisc && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
