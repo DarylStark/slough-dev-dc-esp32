@@ -25,6 +25,8 @@ RUN apt-get update && \
     libssl-dev \
     dfu-util \
     libusb-1.0-0 && \
+    screen && \
+    psmisc && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
