@@ -11,6 +11,7 @@ jobs:
       enable-cd: ${{ github.ref_name == 'main' || github.ref_name == 'dev' }}
       container-repository: dast1986
       version: 1.0.0
+      platforms: 'linux/amd64'
     secrets:
       DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
       DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
