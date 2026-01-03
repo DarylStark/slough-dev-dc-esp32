@@ -1,5 +1,5 @@
 # hadolint ignore=DL3007
-FROM dast1986/slough-dev-dc-cpp:latest AS base
+FROM dast1986/slough-dev-dc-cpp:1.0.0 AS base
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
@@ -37,7 +37,7 @@ USER developer
 WORKDIR /home/developer
 RUN mkdir esp
 WORKDIR /home/developer/esp
-RUN git clone --branch v5.4.1 --recursive https://github.com/espressif/esp-idf.git --depth 1 --recurse-submodules --shallow-submodules
+RUN git clone --branch v5.5.2 --recursive https://github.com/espressif/esp-idf.git --depth 1 --recurse-submodules --shallow-submodules
 WORKDIR /home/developer/esp/esp-idf
 RUN ./install.sh all
 
